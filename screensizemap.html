@@ -1,0 +1,1816 @@
+<html>
+
+    <head>
+    
+    
+        <title>Screen Size Map</title>
+        <meta name="viewport" content="width=device-width, initial-scale=1.0">
+       
+        <script src="https://code.jquery.com/jquery-3.5.0.js"></script>
+        <link href="https://fonts.googleapis.com/css2?family=Cedarville+Cursive&display=swap" rel="stylesheet">
+        
+        <link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300&display=swap" rel="stylesheet">
+        
+        
+        <style>
+            body{
+                
+                background-color: #F8F8F8;
+                margin: 0;
+                padding: 0;
+                text-align: center;
+               font-family: 'Roboto', sans-serif;
+            }
+           
+            #logo{
+                
+                 font-family: 'Cedarville Cursive', cursive;
+                font-size: 25px;
+                padding: 5px;
+                
+                margin: 0;
+            }
+        
+            #topbar{
+                
+                
+                padding-top: 60px;
+             
+             
+            }
+            
+            #pop-bar{
+                  margin: 4px;
+             display: inline-block;
+               
+            }
+            
+            #pop-bar a{
+                   background-color: #ECECEC;
+                
+                text-decoration: none;
+                display: inline-block;
+                color:black;
+              padding:9 25px;
+                margin: -1px;
+                font-size: 12px;
+                font-weight: 400;
+                 cursor: pointer;
+                
+                
+            }
+             #pop-bar a.active{
+             background-color:  gainsboro ;
+                
+            }
+            
+            #pop-bar a:hover{
+                
+                background-color: gainsboro;
+            }
+            
+            #all{
+                
+                border-top-left-radius: 15px;
+                border-bottom-left-radius: 15px;
+            }
+            
+             #high{
+                
+                border-top-right-radius: 15px;
+                border-bottom-right-radius: 15px;
+            }
+            #svg_colorbar{
+                  margin: 4px;
+                 background-color: #ECECEC;
+               
+                display:inline-block; 
+                border-radius:40px;
+                
+                padding-bottom: 0px;
+                margin: 0;
+                   padding:10 17px;
+               padding-top: 7px;
+               
+             cursor: pointer;
+                
+            }
+            
+            #svg_colorbar:hover{
+                
+               background-color: gainsboro;   
+            }
+            
+            #svg_circle{
+                  margin: 4px;
+                background-color: black;
+                display: inline-block;
+                 padding:10 10px;
+                border-radius: 50%;
+                 cursor: pointer;
+                transition: background 2s;
+                
+            }
+            
+            #svg_circle:hover{
+                
+                background: rgba(0,0,0,0.5);
+               
+                 
+            }
+            
+           
+          
+            
+           
+            
+            #color-container{
+                
+                height: 56vw;
+                border: 1px solid #DFE0E5;
+                width: 95vw;
+                margin: auto;
+                margin-top: 20px;
+            }
+            
+           
+            
+            #grid-container{
+                
+                display: grid;
+                grid-template-columns: 30% 70% ;
+                width:50vw;
+                margin: auto;
+                
+                grid-column-gap:  20px;
+                grid-row-gap: 50px;
+                
+            }
+            .image{
+                
+                max-width: 100%;
+                height: 100%;
+             
+            }
+            
+            .blog_text{
+                
+                text-align: left;
+                font-weight: 900;
+                font-size: 17px;
+               
+                
+                
+            }
+            .blog_text a{
+                
+                text-decoration: none;
+                color: black;
+                
+            }
+            
+            #boana:hover{
+                
+                fill:#0A91FE;
+            
+            }
+            
+            
+
+            .tooltip .tooltiptext {
+              display: none;
+              width: auto;
+              background-color: black;
+              color: #fff;
+             text-align:left;
+              border-radius: 6px;
+              padding: 0px 0px;
+              padding-top:5px;
+              position: absolute;
+              font-family: 'Roboto', sans-serif;
+              z-index: 1;
+              top: 0px;
+              left: 100%;
+            }
+            
+            
+            
+            
+            
+            
+          
+
+          /*  .tooltip .tooltiptext::after {
+              content: "";
+              position: absolute;
+              top: 50%;
+              right: 100%;
+              margin-top: -5px;
+              border-width: 5px;
+              border-style: solid;
+
+              border-color: transparent black transparent transparent;
+            }
+           .tooltip:hover .tooltiptext {
+              visibility: visible;
+               
+            } */
+            
+            .tooltip:hover{
+                
+                
+                background: rgba(0,0,0,0.5);
+                border:2px solid white;
+                
+            } 
+
+             /*   rect:hover{
+                
+                stroke:white;
+                stroke-width:5;
+                fill:red;
+                fill-opacity:0.5;
+            }*/
+
+            .tt_title{
+            text-align:left;
+            padding-left:8px;
+            padding-bottom:3px;
+               color:white;
+                background-color: black;
+            display:block;
+                font-weight: bold;
+            font-size:25px;
+               
+
+
+            }
+
+            .tt_row1{
+
+
+            display:block;
+                font-size: 11px;
+
+            padding-left:12px;
+            padding-bottom:8px;
+            color:#6a6a6a;
+            padding-right:14px;
+            }
+
+            .row_text_color{
+            color:#8e8e8d;
+            }
+            .screen_size{
+                 background-color: black;
+            display:block;
+            color:#6a6a6a;
+            padding-left:8px;
+            padding-bottom:3px;
+                font-size: 11px;
+               
+            }
+
+            
+            #popularity{
+                
+                color:black;
+                padding: 5px;
+                font-size: 11px;
+            }
+            
+            
+            @media screen and (max-width:700px){
+                
+                #color-container{
+                    
+                    
+                    
+                }
+                 #grid-container{
+                
+                      grid-template-columns: 40% 60% ;
+                     width:80vw;
+                
+                }
+                
+                 .image{
+                height: auto;
+             
+            }
+            
+            .blog_text{
+                
+                
+                font-size: 15px;
+               
+            }
+            
+                #logo svg{
+                    
+                    width:30vw;
+                    height:6vh;
+                    padding: 0;
+                    
+                    
+                }
+                
+                
+                
+                
+                
+            }
+            
+            
+        </style>
+        
+    </head>
+    
+  
+
+
+    <body>
+        
+        <h1 id="logo">
+        
+        <svg id="ssm-logo" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 65.1969 14.1732" width="10vw" height="10vh" ><title> Screen Size Map </title><path d="M3.1665,9.32c.4917,0,.7915-.24.7915-.6475,0-1.02-3.3223-1.0673-3.3223-3.3945,0-1.667.8633-3.0342,2.2906-3.0342,1.4873,0,1.8349,1.4273,1.8349,2.7105a.8529.8529,0,0,1-.8516.7915.278.278,0,0,1-.2758-.3c-.024-1.355-.3594-2.1109-.8633-2.1109s-.8755.66-.8755,1.8111c0,1.4751,3.19,1.4873,3.19,3.4062a1.9764,1.9764,0,0,1-2.1948,1.8711c-1.4033,0-2.3628-.5639-2.3628-.9717,0-.4438.2036-.8632.4317-.8632C1.2832,8.5882,2.2187,9.32,3.1665,9.32Z"></path><path d="M10.3169,5.1936c.0244-.0717.0722-.12.12-.12a.4286.4286,0,0,1,.3237.3955c0,1.0078-1.02,4.93-3.1543,4.93-1.5229,0-2.0625-1.0078-2.0625-2.459,0-2.3984.6836-3.7778,2.0025-3.7778.9839,0,1.4394.84,1.4394,2.1948a.842.842,0,0,1-.8037.7676.2748.2748,0,0,1-.3115-.3c0-1.3672-.1079-1.6909-.42-1.6909-.4317,0-.7076.7436-.7076,2.5546,0,1.1753.4556,1.5708.9957,1.5708C8.9736,9.26,9.8374,7.1609,10.3169,5.1936Z"></path><path d="M14.2051,5.2058c.06-.312.4438.0122.4316.3-.12,1.835-.8276,4.8936-2.3149,4.8936a1.1407,1.1407,0,0,1-1.2349-1.2354c0-.9594.3115-2.6147.3594-3.5981-.18.0117-.4434.0239-.6953.0239-.0122.084-.0122.168-.024.2281-.0122.1079-.0483.1435-.1079.1435a.3608.3608,0,0,1-.372-.2876.1067.1067,0,0,1,.0122-.06h-.18c-.4917,0-.6113-.3956-.5635-.8038.0361-.4316.144-.6352.4077-.6352a16.8064,16.8064,0,0,1,2.1709.1919c.3838.0478.5518.2158.5518.5757,0,.8032-.36,2.7465-.36,3.8618,0,.3.12.4555.336.4555C13.1855,9.26,13.7134,7.5447,14.2051,5.2058Z"></path><path d="M18.4409,5.1936c.0239-.0717.06-.12.1079-.12a.4152.4152,0,0,1,.3237.3955c0,1.0078-1.0434,4.93-3.25,4.93-1.4633,0-2.0029-1.0557-2.0029-2.291,0-2.4946.8032-3.9458,2.0747-3.9458a1.3505,1.3505,0,0,1,1.4273,1.415c0,1.02-.8037,1.9312-2.3506,2.0752v.168c0,1.0312.4316,1.5112.9951,1.5112C17.0493,9.3318,17.9492,7.1609,18.4409,5.1936Zm-3.646,1.919c1.103-.4317,1.3789-1.127,1.3789-1.5708,0-.336-.1435-.5279-.4194-.5279C15.2627,5.0139,14.8789,5.6614,14.7949,7.1126Z"></path><path d="M22.6772,5.1936c.024-.0717.06-.12.1079-.12a.4153.4153,0,0,1,.3238.3955c0,1.0078-1.0435,4.93-3.25,4.93-1.4634,0-2.003-1.0557-2.003-2.291,0-2.4946.8033-3.9458,2.0747-3.9458a1.3505,1.3505,0,0,1,1.4273,1.415c0,1.02-.8037,1.9312-2.3506,2.0752v.168c0,1.0312.4316,1.5112.9951,1.5112C21.2856,9.3318,22.1855,7.1609,22.6772,5.1936Zm-3.646,1.919c1.1031-.4317,1.3789-1.127,1.3789-1.5708,0-.336-.1435-.5279-.4194-.5279C19.499,5.0139,19.1152,5.6614,19.0312,7.1126Z"></path><path d="M26.853,8.18a.2166.2166,0,0,1,.18-.1323c.1318,0,.228.1323.228.3482,0,.9355-.4677,2.0029-1.3672,2.0029-.8154,0-1.1992-.6836-1.1875-1.9429,0-.8877.1441-1.8354.18-2.6269,0-.18-.0483-.2759-.1562-.2759-.54,0-1.1753,2.8306-1.3912,4.5215-.0239.144-.144.24-.3837.24-.3,0-.7076-.1562-.7315-.5517-.0239-.5879.06-4.294.1919-4.9053.0479-.1919.1079-.3.2637-.312.2519,0,.6118.1318.6118.4677,0,1.0435-.0239,1.9551-.0479,2.6148.4078-2.0391,1.0791-3.4541,2.0508-3.4541.54,0,.7793.3838.7793,1.0073,0,.7915-.2158,1.895-.2158,3.0342,0,.6958.168.9238.396.9238C26.6011,9.14,26.7568,8.5882,26.853,8.18Z"></path><path d="M31.7143,10.4348a1.9093,1.9093,0,0,1-1.559-.8632c-.1919.4677-.396.7675-.5757.7675-.2281,0-.4439-.3237-.4439-.5756a.5643.5643,0,0,1,.0479-.2041,26.3261,26.3261,0,0,0,1.4272-4.7012.8384.8384,0,0,1,.6236-.7075.5018.5018,0,0,1,.36.2514,8.3621,8.3621,0,0,1,1.5591,4.126A10.9369,10.9369,0,0,0,34.3408,5.23c.0239-.0718.06-.12.1079-.12a.4068.4068,0,0,1,.3237.4077c-.0356,1.4991-.8872,4.917-3.0463,4.917Zm.3-1.9189a5.6425,5.6425,0,0,0-.9956-2.8423,17.07,17.07,0,0,1-.54,2.8906,1.6071,1.6071,0,0,0,1.0674.7315C31.7983,9.2957,32.0141,9.0559,32.0141,8.5159Z"></path><path d="M36.85,5.2058c.0239-.0957.06-.1318.1079-.1318a.4258.4258,0,0,1,.3237.4316c-.1079,1.8472-.8994,4.8936-2.207,4.8936-.8872,0-1.187-.84-1.187-2.2788a35.0038,35.0038,0,0,1,.168-3.562c.0478-.2759.1557-.3482.3237-.3482.3476,0,.7554.168.7554.54,0,1.5947-.108,2.4345-.108,3.4179,0,.7315.168.9717.4078.9717C35.9619,9.14,36.4536,6.9929,36.85,5.2058ZM33.959,2.867a.824.824,0,0,1,.9116-.8272.6855.6855,0,0,1,.7793.6714.8058.8058,0,0,1-.8633.8638A.7373.7373,0,0,1,33.959,2.867Z"></path><path d="M38.0625,10.3391c-.8516,0-1.2954-.1318-1.2954-.3838a1.2412,1.2412,0,0,1,.18-.7915,18.0043,18.0043,0,0,0,2.0269-3.646c-.6118.0958-1.2715.1558-1.7031.18,0,.0479-.0122.0962-.0122.1319-.0117.1079-.06.1318-.12.1318a.3613.3613,0,0,1-.372-.2876V5.65c-.252-.168-.3116-.66-.3116-.84,0-.4433.1675-.5034.6-.5034.6235-.0239,1.7148-.06,2.6381-.0122.2281.0122.42.252.42.6118A11.4941,11.4941,0,0,1,37.9424,9.38h.3359A2.1757,2.1757,0,0,0,39.73,8.9119c.8154-.6719,1.2954-2.1231,1.7153-3.7061.0239-.0839.06-.12.12-.12a.3443.3443,0,0,1,.312.3838c-.24,1.3316-.7915,3.3706-1.5952,4.186a2.1225,2.1225,0,0,1-1.6069.6954C38.4585,10.3509,38.2065,10.3391,38.0625,10.3391Z"></path><path d="M43.9653,8.2044c.084-.0962.1441-.1563.24-.1563.1323,0,.2041.1323.2041.3482a1.7991,1.7991,0,0,1-1.607,2.0029c-1.4634,0-2.0029-1.0557-2.0029-2.291,0-2.4946.8032-3.9458,2.0747-3.9458a1.3505,1.3505,0,0,1,1.4273,1.415c0,1.02-.8038,1.9312-2.3506,2.0752v.168c0,1.0312.4316,1.5112.9951,1.5112C43.4858,9.3318,43.7856,8.66,43.9653,8.2044ZM41.9746,7.1126c1.103-.4317,1.3789-1.127,1.3789-1.5708,0-.336-.1436-.5279-.4194-.5279C42.4424,5.0139,42.0586,5.6614,41.9746,7.1126Z"></path><path d="M51.7524,8.4563c0-.8877.1436-1.8354.18-2.6269,0-.18-.0478-.2759-.1558-.2759-.54,0-1.2475,2.8306-1.3916,4.4736a.31.31,0,0,1-.3354.2759c-.4678,0-.8037-.2158-.8037-.6235,0-1.3672.084-2.7105.06-3.85,0-.18-.0361-.2759-.144-.2759-.5156,0-1.1274,2.8306-1.3433,4.5215a.36.36,0,0,1-.3837.24c-.3477,0-.72-.1562-.7315-.5517-.0239-.5879.06-4.2818.1919-4.9053.0479-.2158.0957-.3.2637-.312a.61.61,0,0,1,.6357.6118c0,.9355-.0239,1.7749-.06,2.3984.4316-2.0029,1.1152-3.3818,1.979-3.3818.7075,0,.8154.6.8154,1.811,0,.1919,0,.42-.0117.6714.4077-1.5112.9951-2.4824,1.8227-2.4824.54,0,.78.3838.78,1.0073,0,.7915-.2158,1.895-.2158,3.0342,0,.6958.1675.9238.3955.9238.5395,0,1.0674-2.147,1.4634-3.9341.0239-.0839.06-.1318.12-.1318.1323,0,.312.2036.312.3955,0,1.0195-.8393,4.93-2.2549,4.93C52.124,10.3992,51.7524,9.7273,51.7524,8.4563Z"></path><path d="M56.8774,8.9119c-.2876.8393-.6836,1.4751-1.2231,1.4751-.732,0-1.4751-.8037-1.4751-2.0147,0-2.7109.8154-4.1977,1.9429-4.1977a1.1093,1.1093,0,0,1,1.0434.7314c.0718-.42.1318-.5879.3355-.5879a.5785.5785,0,0,1,.6118.5279c0,.6718-.1919,2.8427-.1919,3.8017,0,.396.1318.4922.312.4922.5395,0,1.0913-2.147,1.4751-3.9341.084-.312.4438.0122.4438.3-.12,1.835-.84,4.8936-2.0268,4.8936A1.409,1.409,0,0,1,56.8774,8.9119Zm-1.643-.5757c0,.4556.1079.8037.3715.8037.6358,0,1.2476-2.291,1.2476-3.2744,0-.4438-.2158-.6719-.54-.6719C55.7983,5.1936,55.2344,6.3933,55.2344,8.3362Z"></path><path d="M60.1064,12.222a.6714.6714,0,0,1-.7558-.6c-.024-.1919-.024-1.1035-.024-2.1826,0-1.4394.06-3.3222.1558-4.5937.0361-.4556.1563-.54.3242-.54a.6058.6058,0,0,1,.5874.5757v1.355c.336-1.103.8516-2.0625,1.6074-2.0625.8755,0,1.2832.8032,1.2832,1.895,0,2.7583-.8276,4.3174-1.727,4.3174a1.7693,1.7693,0,0,1-1.1157-.3477,15.8515,15.8515,0,0,1,.0722,1.6192C60.5141,12.1018,60.334,12.222,60.1064,12.222Zm2.003-6.1045c0-.48-.168-.8038-.42-.8038-.66,0-1.1875,2.375-1.1635,3.3824.0122.4316.228.66.5517.66C61.6055,9.3557,62.1094,8.0242,62.1094,6.1175Z"></path></svg>
+        
+        
+        
+        
+        </h1>
+        
+        <h3 style="padding: 0;margin:0;font-size: 25px;">The web mapped for responsive design.</h3>
+        
+        <p style="margin: 0px; padding-top: 10px; color:#878787; font-size: 11px;">The screen size map comapres viewport sizes in device-independent pixel to plan responsive</p>
+        
+        <p style="margin: 0; font-size: 11px; color:#878787;">and fluid layouts for great UX/UI designs in digital product.</p>
+        
+        
+        
+         <!-- Toggle Bar -->
+        
+        <div id="topbar">
+        
+            <p style="margin: 0; font-size: 10px; color:#878787; display: inline-block; font-weight: 900; padding: 5px;"><span id="popularity"></span>POPULARITY</p>
+            
+            <div id="pop-bar">
+            
+                <a href="#" class="toggle_button active" id="all" ><strong>All</strong></a>
+                
+                <a href="#" class="toggle_button" id="low"><strong>Low</strong></a>
+                
+                <a href="#" class="toggle_button" id="medium"><strong>Medium</strong></a>
+                
+                <a href="#" class="toggle_button" id="high"><strong>High</strong></a>
+                
+            
+            </div>
+            
+            <div id="svg_colorbar" >
+
+                <svg width="27" height="14">
+                    
+                     <rect x="21" y="8" rx="2" ry="2" width="6" height="6" style="fill:#F1C40F;" />
+                    
+                      <rect x="11" y="8" rx="2" ry="2" width="6" height="6" style="fill:#E67E22;" />
+                    
+                    
+                      <rect x="0" y="8" rx="2" ry="2" width="6" height="6" style="fill:#E74C3C;" />
+                    
+                     <rect x="21" y="0" rx="2" ry="2" width="6" height="6" style="fill:#2ECC71;" />
+                    
+                        <rect x="11" y="0" rx="2" ry="2" width="6" height="6" style="fill:#2980B9;" />
+                    
+                
+            <rect x="0" y="0" rx="2" ry="2" width="6" height="6" style="fill:#8E44AD;" />
+                    
+                 
+                    
+                </svg>
+             </div>
+
+            
+            <div id="svg_circle">
+            
+                <svg width="15" height="15">
+                        <line x1="0" y1="0" x2="14" y2="14" style="stroke:rgb(255,255,255);stroke-width:1" />
+  
+                      <line x1="0" y1="0" x2="1" y2="5" style="stroke:rgb(255,255,255);stroke-width:1" />
+
+                       <line x1="0" y1="0" x2="5" y2="1" style="stroke:rgb(255,255,255);stroke-width:1" />
+
+                        <line x1="14" y1="14" x2="9" y2="13" style="stroke:rgb(255,255,255);stroke-width:1" />
+                        <line x1="14" y1="14" x2="13" y2="9" style="stroke:rgb(255,255,255);stroke-width:1" />
+
+                       <line x1="14" y1="0" x2="0" y2="14" style="stroke:rgb(255,255,255);stroke-width:1" />
+                    
+                    <line x1="14" y1="0" x2="14" y2="5.5" style="stroke:rgb(255,255,255);stroke-width:1" />
+                      <line x1="14" y1="0" x2="8" y2="0.5" style="stroke:rgb(255,255,255);stroke-width:1" />
+                    
+                    <line x1="0" y1="14" x2="1" y2="8.5" style="stroke:rgb(255,255,255);stroke-width:1" />
+                    <line x1="0" y1="14" x2="6" y2="13" style="stroke:rgb(255,255,255);stroke-width:1" />
+                    
+                    
+                    
+                    
+                      Sorry, your browser does not support inline SVG.
+                
+                
+                </svg>    
+            
+            
+            
+            </div>
+        
+        
+        
+        </div>
+        
+        
+        <!-- Main Color Container -->
+        <div id="color-container" style="position: relative;">
+            
+            
+        <!-- Popularity High -->
+              <!-- 2560 x 1440 dp -->     
+                <div style= " width:auto; position: absolute;left:0%;" class="tooltip low">
+                    <svg width="95vw" height="56vw">
+                    
+                        <rect x="0" y="0" width="95vw" height="100%"
+                  style="fill:#F1C40F;fill-opacity:0.2;" />
+                   
+                    
+                    </svg>
+                    
+                    <div class="tooltiptext" >
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >2560&nbsp;x&nbsp;1440 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Extra&nbsp;Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="yellow" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; ">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Apple&nbsp;iMac&nbsp;27"</span>
+                     
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                    
+                
+                </div>
+            
+            
+            
+            
+            
+           
+            <!-- 1920 x 1200 dp -->     
+                <div style= " width:auto; position: absolute;left:12%;" class="tooltip low">
+                    <svg width="75vw" height="45vw">
+                    
+                        <rect x="0" y="0" width="75vw" height="45vw"
+                  style="fill:#F1C40F;fill-opacity:0.2;" />
+                   
+                    
+                    </svg>
+                    
+                    <div class="tooltiptext" >
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >1920&nbsp;x&nbsp;1200 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Extra&nbsp;Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="yellow" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Desktop&nbsp;Monitors&nbsp;24"to27"</span>
+                     
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                    
+                
+                </div>
+            
+            
+            
+              <!-- 1920 x 1080 dp -->     
+                <div style= " width:auto; position: absolute;left:12%;" class="tooltip high">
+                    <svg width="75vw" height="41vw">
+                    
+                        <rect x="0" y="0" width="75vw" height="41vw"
+                  style="fill:#F1C40F;fill-opacity:0.3;" />
+                   
+                    
+                    </svg>
+                    
+                    <div class="tooltiptext" >
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >1920&nbsp;x&nbsp;1080 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Extra&nbsp;Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="yellow" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Desktop&nbsp;Monitors&nbsp;24"to27"</span>
+                     
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">8.51%</span>
+
+ 
+                      </span>
+
+                      </div>
+                    
+                
+                </div>
+                
+            
+            <!-- 1680 x 1080 dp -->     
+                <div style= " width:auto; position: absolute;left:15.4%;" class="tooltip low">
+                    <svg width="67vw" height="41vw">
+                    
+                        <rect x="0" y="0" width="67vw" height="41vw"
+                  style="fill:yellow;fill-opacity:0.1;" />
+                   
+                    
+                    </svg>
+                    
+                    <div class="tooltiptext" >
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >1680&nbsp;x&nbsp;1080 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Extra&nbsp;Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="yellow" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Desktop&nbsp;Monitors&nbsp;20"to22"</span>
+                     
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                    
+                
+                </div>
+            
+            
+            
+            
+             <!-- 1600 x 900 dp -->   
+                 <div class="tooltip medium" style="position: absolute; left:17%;">
+                 
+                     <svg width="64vw" height="35vw">
+                     <rect x="0" y="0" width="64vw" height="35vw" style="fill:yellow; fill-opacity:0.2;"    />
+                     
+                     </svg>
+                 
+                     <div class="tooltiptext">
+                     
+                        <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >1600&nbsp;x&nbsp;900 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Extra&nbsp;Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="yellow" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Apple&nbsp;iPhone&nbsp;3GS</span>
+                     <span class="row_text_color" style="padding-left:80px;">Desktop&nbsp;Monitors&nbsp;14"to19"</span>
+ 
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">2.21%</span>
+
+ 
+                      </span>
+
+                     </div> 
+                     
+                 </div>
+            
+            
+            
+             <!-- 1536 x 864 dp -->   
+             <div class="tooltip medium" style="position: absolute; left:19.1%;">
+                 
+                     <svg width="61vw" height="34vw">
+                     <rect x="0" y="0" width="61vw" height="34vw" style="fill:#FAE9B2;fill-opacity:0.7;"    />
+                     
+                     </svg>
+                 
+                     <div class="tooltiptext">
+                     
+                        <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >1536&nbsp;x&nbsp;864 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Extra&nbsp;Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="yellow" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:40px;">IBM&nbsp;ThinkPad</span>
+ 
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">2.4%</span>
+
+ 
+                      </span>
+
+                     </div> 
+                     
+                 </div>
+                
+            
+            
+            <!-- 1440 x 900 dp --> 
+            <div style= " width:auto; position: absolute;left:21.2%;" class="tooltip medium">
+                    <svg width="59vw" height="35vw">
+                    
+                        <rect x="0" y="0" width="59vw" height="35vw"
+                  style="fill:orange;fill-opacity:0.3;" />
+                   
+                    
+                    </svg>
+                    
+                    <div class="tooltiptext" >
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >1440&nbsp;x&nbsp;900 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Extra&nbsp;Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="orange" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Apple&nbsp;Mactintosh&nbsp;Pro&nbsp;15"</span>
+                     <span class="row_text_color" style="padding-left:80px;">HP&nbsp;Notebook&nbsp;17"</span>
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">2.9%</span>
+
+ 
+                      </span>
+
+                      </div>
+                    
+                
+                </div>
+                
+                
+                
+                  
+                  <!-- 1366 x 768dp --> 
+                <div style= " width:auto; position: absolute; left:22.6%;" class="tooltip high">
+                            <svg  width="56vw" height="31vw">
+                   
+                    <rect x="0" y="0" width="56vw" height="31vw"
+                          style="fill:#E67E22;fill-opacity:0.2;" /> </svg>
+                    
+                 <div class="tooltiptext" >
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >1366&nbsp;x&nbsp;768 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Small</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="orange" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Apple&nbsp;MacBook&nbsp;13"</span>
+                     
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">10.95%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                </div>
+            
+            
+                
+             
+                  <!-- 1280 x 800dp --> 
+            
+            <div style= " width:auto; position: absolute; left:24%;" class="tooltip medium">
+                            <svg  width="53vw" height="33vw">
+                   
+                    <rect x="0" y="0" width="53vw" height="33vw"
+                          style="fill:#E67E22;fill-opacity:0.2;" /> </svg>
+                    
+                 <div class="tooltiptext" >
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >1280&nbsp;x&nbsp;800 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="orange" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Laptops&nbsp;with&nbsp;13"to15"</span><br>
+                           <span class="row_text_color" style="padding-left:80px;">Lenovo&nbsp;IdeaPad</span>
+                           <br><span class="row_text_color" style="padding-left:80px;">HP&nbsp;x2&nbsp;210&nbsp;G2</span>
+                     
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">2.07%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                </div>
+            
+              <!-- 1024 x 768dp --> 
+            
+             <div style= " width:auto; position: absolute; left:27.5%;" class="tooltip low">
+                            <svg  width="47vw" height="31vw">
+                   
+                    <rect x="0" y="0" width="47vw" height="31vw"
+                          style="fill:#e74c3c;fill-opacity:0.2;" /> </svg>
+                    
+                 <div class="tooltiptext" >
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >1024&nbsp;x&nbsp;768 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#e74c3c" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Amazon&nbsp;Fire&nbsp;7Tablets</span><br>
+                           <span class="row_text_color" style="padding-left:80px;">Tablet&nbsp;Huwaei&nbsp;MediaPad</span>
+                           
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                </div>
+            
+            
+            
+             <!-- 1024 x 600dp --> 
+            
+            <div style= " width:auto; position: absolute; left:27.5%;" class="tooltip low">
+                            <svg  width="47vw" height="26vw">
+                   
+                    <rect x="0" y="0" width="47vw" height="26vw"
+                          style="fill:#e74c3c;fill-opacity:0.2;" /> </svg>
+                    
+                 <div class="tooltiptext" >
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >1024&nbsp;x&nbsp;600 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#e74c3c" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Apple&nbsp;iPad&nbsp;Mini</span><br>
+                           <span class="row_text_color" style="padding-left:80px;">Apple&nbsp;iPad&nbsp;1/2/3/4</span>
+                           
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                </div>
+            
+           
+            
+            
+             <!-- 960 x 540dp --> 
+            
+            <div style= " width:auto; position: absolute; left:28.7%;" class="tooltip low">
+                            <svg  width="42vw" height="21vw">
+                   
+                    <rect x="0" y="0" width="42vw" height="21vw"
+                          style="fill:#e74c3c;fill-opacity:0.2;" /> </svg>
+                    
+                 <div class="tooltiptext" >
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >960&nbsp;x&nbsp;540 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Large</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#e74c3c" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em>
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                </div>
+            
+            
+            
+            
+            <!-- 800 x 1280 dp --> 
+                <div style= " width:auto;position: absolute; left:33.5%; " class="tooltip low">
+                  
+                     <svg width="31.5vw" height="47vw">
+                   
+                   <rect x="0" y="0" width="31.5vw" height="47vw"
+                         style="fill:#2ecc71;fill-opacity:0.4;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >800&nbsp;x&nbsp;1280<span style="color:#6a6a6a; padding:4px;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Medium</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#2ecc71" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em>
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+            <!-- 800 x 480 dp --> 
+                <div style= " width:auto;position: absolute; left:33.5%; " class="tooltip low">
+                  
+                     <svg width="31.5vw" height="19vw">
+                   
+                   <rect x="0" y="0" width="31.5vw" height="19vw"
+                         style="fill:#2ecc71;fill-opacity:0.4;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >800&nbsp;x&nbsp;480<span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Medium</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#2ecc71" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em>
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+            
+            
+             <!-- 768 x 1366 dp --> 
+            
+             <div style= " width:auto;position: absolute; left:34.2%; " class="tooltip low">
+                  
+                     <svg width="30vw" height="50vw">
+                   
+                   <rect x="0" y="0" width="30vw" height="50vw"
+                         style="fill:#2ecc71;fill-opacity:0.4;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >768&nbsp;x&nbsp;1366 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Medium</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#2ecc71" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em>
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+            
+            
+            <!-- 768 x 1024 dp --> 
+            
+             <div style= " width:auto;position: absolute; left:34.2%; " class="tooltip medium">
+                  
+                     <svg width="30vw" height="42vw">
+                   
+                   <rect x="0" y="0" width="30vw" height="42vw"
+                         style="fill:#2ecc71;fill-opacity:0.3;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >768&nbsp;x&nbsp;1024 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Medium</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#2ecc71" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:40px;">Apple&nbsp;iPade&nbsp;Mini</span><br><span class="row_text_color" style="padding-left:80px;">Apple&nbsp;iPade&nbsp;1/2/3/4</span>
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">2.5%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+             <!-- 720 x 1280 dp --> 
+            
+             <div style= " width:auto;position: absolute; left:35.5%; " class="tooltip low">
+                  
+                     <svg width="27vw" height="47vw">
+                   
+                   <rect x="0" y="0" width="27vw" height="47vw"
+                         style="fill:#2ecc71;fill-opacity:0.2;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >720&nbsp;x&nbsp;1280 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Medium</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#2ecc71" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:40px;">Samsung&nbsp;A5&nbsp;& &nbsp;Z3</span><br><span class="row_text_color" style="padding-left:80px;">Samsung&nbsp;Galaxy&nbsp;J7</span>
+                           <br><span class="row_text_color" style="padding-left:80px;">Motorola&nbsp;Moto&nbsp;G</span>
+                           <br><span class="row_text_color" style="padding-left:80px;">LG&nbsp;Phoenix&nbsp;2</span>
+                            <br><span class="row_text_color" style="padding-left:80px;">Sony&nbsp;Xperia&nbsp;M4</span>
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">2.5%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+            
+             <!-- 600 x 1024 dp --> 
+            
+             <div style= " width:auto;position: absolute; left:38%; " class="tooltip low">
+                  
+                     <svg width="21vw" height="42vw">
+                   
+                   <rect x="0" y="0" width="21vw" height="42vw"
+                         style="fill:#2980b9;fill-opacity:0.2;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >600&nbsp;x&nbsp;1024 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Small</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#2980b9" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:40px;">Amazon&nbsp;Kindle&nbsp;Fire&nbsp;First&nbsp;Gen</span><br><span class="row_text_color" style="padding-left:80px;">Samsung&nbsp;Galaxy&nbsp;Tab2</span>
+                           
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under 2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+            
+            <!-- 600 x 960 dp --> 
+            
+             <div style= " width:auto;position: absolute; left:38%; " class="tooltip low">
+                  
+                     <svg width="21vw" height="36vw">
+                   
+                   <rect x="0" y="0" width="21vw" height="36vw"
+                         style="fill:#2980b9;fill-opacity:0.2;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >600&nbsp;x&nbsp;960 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Small</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#2980b9" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:40px;">Barned&nbsp;Nobles&nbsp;Nook&nbsp;HD</span><br><span class="row_text_color" style="padding-left:80px;">Nexus&nbsp;7</span>
+                           
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under 2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+             <!-- 540 x 960 dp --> 
+            
+             <div style= " width:auto;position: absolute; left:40%; " class="tooltip low">
+                  
+                     <svg width="18vw" height="36vw">
+                   
+                   <rect x="0" y="0" width="18vw" height="36vw"
+                         style="fill:#2980b9;fill-opacity:0.2;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >540&nbsp;x&nbsp;960 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Small</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#2980b9" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:40px;">Motorola&nbsp;Moto&nbsp;E</span><br><span class="row_text_color" style="padding-left:80px;">VIVO&nbsp;Y51L</span><br><span class="row_text_color" style="padding-left:80px;">HTC&nbsp;EVO&nbsp;3D</span>
+                           
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under 2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+             <!-- 480 x 800 dp --> 
+            
+             <div style= " width:auto;position: absolute; left:40.3%; " class="tooltip low">
+                  
+                     <svg width="17vw" height="33vw">
+                   
+                   <rect x="0" y="0" width="17vw" height="33vw"
+                         style="fill:#2980b9;fill-opacity:0.2;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >480&nbsp;x&nbsp;800 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Small</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#2980b9" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:40px;">Alcatel&nbsp;One&nbsp;Touch&nbsp;T10</span><br><span class="row_text_color" style="padding-left:80px;">Panasonic&nbsp;T44</span>
+                           
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under 2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+             <!-- 414 x 736 dp --> 
+            
+             <div style= " width:auto;position: absolute; left:41.3%; " class="tooltip medium">
+                  
+                     <svg width="15.5vw" height="30vw">
+                   
+                   <rect x="0" y="0" width="15.5vw" height="30vw"
+                         style="fill:#8E44AD;fill-opacity:0.2;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >414&nbsp;x&nbsp;736 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Small</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#8E44AD" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:40px;">Apple&nbsp;One&nbsp;iPhone&nbsp;6/7/8&nbsp;Plus</span>
+                           
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">2.38%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+             <!-- 400 x 640 dp --> 
+            
+             <div style= " width:auto;position: absolute; left:41.9%; " class="tooltip high">
+                  
+                     <svg width="14vw" height="27vw">
+                   
+                   <rect x="0" y="0" width="14vw" height="27vw"
+                         style="fill:#8E44AD;fill-opacity:0.2;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >400&nbsp;x&nbsp;640 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Small</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#8E44AD" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:40px;">Samsung&nbsp;Galaxy&nbsp;Note</span>
+                           
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">2.38%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+                
+                 <!-- 375 x 667 dp --> 
+                 <div style= " width:auto;  position: absolute;  left:42.5%" class="tooltip high">
+                    <svg width="13vw" height="28vw">
+                        
+                   <rect x="0" y="0" width="13vw" height="28vw"
+                  style="fill:#8E44AD;fill-opacity:0.3;" />
+                    
+                    </svg>
+                     
+                      <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >375&nbsp;x&nbsp;667 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Small</span><span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#8E44AD" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:40px;">Apple&nbsp;iPhone&nbsp;6-8</span>
+                     
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">5%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                     
+                </div>
+            
+             <!-- 320 x 568 dp --> 
+                <div style= " width:auto;position: absolute; left:43.5%; " class="tooltip low">
+                  
+                     <svg width="11.5vw" height="24vw">
+                   
+                   <rect x="0" y="0" width="11.5vw" height="24vw"
+                         style="fill:#8E44AD;fill-opacity:0.5;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >320&nbsp;x&nbsp;568 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Small</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#8E44AD" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Apple&nbsp;iPhone&nbsp;5C&nbsp;5S</span>
+                     
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+            
+             <!-- 320 x 533 dp --> 
+                <div style= " width:auto;position: absolute; left:43.5%; " class="tooltip low">
+                  
+                     <svg width="11vw" height="22vw">
+                   
+                   <rect x="0" y="0" width="11vw" height="22vw"
+                         style="fill:#8E44AD;fill-opacity:0.5;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >320&nbsp;x&nbsp;533 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Small</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#8E44AD" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Galazy&nbsp;S</span>
+                     <span class="row_text_color" style="padding-left:80px;">Galaxy&nbsp;S2</span>
+                            <span class="row_text_color" style="padding-left:80px;">Samsung&nbsp;Galaxy&nbsp;S3&nbsp;Mini</span>
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+                
+                
+                   
+                <!-- 320 x 480 dp --> 
+                <div style= " width:auto;position: absolute; left:43.5%; " class="tooltip low">
+                  
+                     <svg width="10.5vw" height="19vw">
+                   
+                   <rect x="0" y="0" width="10.6vw" height="19vw"
+                         style="fill:#8E44AD;fill-opacity:0.5;" /> 
+                   
+                       </svg> 
+                
+                
+                 <div class="tooltiptext">
+                     <span class="screen_size"> <em>Screen Size</em></span>
+                    <span class="tt_title" >320&nbsp;x&nbsp;480 <span style="color:#6a6a6a;">dp</span></span>
+
+                      <span class="tt_row1" style="background-color:#191919;">
+
+                    <br> <em>Category</em><span style="color:white; padding-left: 40px;" >Extra&nbsp;Small</span> <span style="width:auto; height:auto; display:inline-block; ">
+                    <svg height="15" width="20">
+                      <circle cx="10" cy="10" r="5"   fill="#8E44AD" />
+                      Sorry, your browser does not support inline SVG.  
+                    </svg> </span>    
+
+                      </span>
+
+
+                       <span class="tt_row1" style="background-color:#333333; border-bottom-left-radius:6px;border-bottom-right-radius:6px;">
+                      <br>
+                     <em>Devices</em><span class="row_text_color" style="padding-left:42px;">Apple&nbsp;iPhone&nbsp;3GS</span>
+                     <span class="row_text_color" style="padding-left:80px;">Apple &nbsp;iPhone&nbsp;4S</span>
+
+                      <br>
+                        <br>
+
+                      <em>Popularity</em><span class="row_text_color" style="padding-left:38px;">under&nbsp;2%</span>
+
+ 
+                      </span>
+
+                      </div>
+                
+                
+                </div>
+                
+                
+        
+        </div>
+        
+        <div id="tooltip_holder"></div>
+       
+        <h1 style="margin-top: 100px;margin-bottom: 70px;">More Responsive Design and UX</h1>
+        
+          <!-- Blog Post Grid-->
+        
+        <div id="grid-container">
+        
+            <div ><a href="https://boanastudio.com/blog/text-in-responsive-web-design?ref=screensizemap" target="_blank"><img class="image" src="https://boanastudio.com/images/7/b/6/1/a/7b61a9a319f348625673700e0de9b3b6a7788122-type.jpeg"></a></div>
+        
+            
+            <div class="blog_text" ><a href="https://boanastudio.com/blog/text-in-responsive-web-design?ref=screensizemap" target="_blank">
+                <h2 style="margin: 0;"><strong>Text in Responsive web design</strong></h2>
+                <p style="margin: 0px; padding-top: 4px; color:#878787; font-size: 13px;"><em>Improve line-breaks and hyphenation on your web pages with computerized typesetting. It’s fairly easy.</em></p>
+                
+                <p style="color:#878787; font-size: 14px; padding-top: 15px;">4 min read</p>
+                </a>
+            </div>
+        
+            <div ><a href="https://boanastudio.com/blog/large-desktop-experience-responsive-design-ux-ui-digital-product?ref=screensizemap" target="_blank"><img class="image" src="https://boanastudio.com/images/b/f/1/8/a/bf18a9c88d747f6a393f47ce82e06ffe4bce9a95-large-desktop.jpg"></a></div>
+        
+            
+            <div class="blog_text" >
+                <a href="https://boanastudio.com/blog/large-desktop-experience-responsive-design-ux-ui-digital-product?ref=screensizemap" target="_blank">
+                <h2 style="margin: 0;"><strong>The large-desktop experience in Responsive web design</strong></h2>
+             <p style="margin: 0px; padding-top: 4px; color:#878787; font-size: 13px;"><em>A case study on giant monitors</em></p>
+                
+                
+               <p style="color:#878787; font-size: 14px; padding-top: 15px;">5 min read</p>
+                </a>
+            </div>
+        
+            <div ><a href="https://boanastudio.com/blog/how-to-design-landing-pages-from-the-user-perspective-ux-ui?ref=screensizemap" target="_blank"><img class="image" src="https://boanastudio.com/images/3/6/4/4/c/3644c5e72776756caec9015d5ff81cdd8ea9e54d-green-user.jpg"></a></div>
+        
+            
+            <div class="blog_text" >
+                <a href="https://boanastudio.com/blog/how-to-design-landing-pages-from-the-user-perspective-ux-ui?ref=screensizemap" target="_blank">
+                <h2 style="margin: 0;"><strong>How to desgin landing pages in user's perspective?</strong></h2>
+            <p style="margin: 0px; padding-top: 4px; color:#878787; font-size: 13px;"><em>A simple, yet powerful storyline framework for landing pages.</em></p>
+                
+                   <p style="color:#878787; font-size: 14px; padding-top: 15px;">3 min read</p>
+                </a>
+            </div>
+        
+        
+        
+        
+        
+        </div>
+        
+        
+        
+           
+             <h3 style="padding: 0;margin-bottom: 5px; margin-top:100px;font-size: 20px;">Screen Size Map is</h3>
+        <h3 style="padding: 0;margin:0;font-size: 20px;">brought to you by <span ><svg id="boana" version="1.1" width="74" height="18" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px" viewBox="0 0 330 79.8" style="enable-background:new 0 0 330 79.8;" xml:space="preserve" fill="#FE3F34">
+			 <title>Boana Logo</title>
+			 <g>
+				 <path d="M132.3,50.3c0,8.4-3,15.4-8.8,20.9c-5.8,5.6-13.4,8.6-22.1,8.6S85,77,79.3,71.2c-5.8-5.6-8.8-12.6-8.8-20.9 c0-8.4,3-15.4,8.8-20.9c5.8-5.8,13.4-8.6,22.1-8.6s16.4,2.8,22.1,8.6C129.3,35.1,132.3,42.1,132.3,50.3z M86.8,50.3 c0,4.6,1.4,8.6,4,11.4c2.8,3,6.2,4.4,10.4,4.4c4.2,0,7.8-1.4,10.4-4.4c2.8-3,4-6.8,4-11.4s-1.4-8.6-4-11.6c-2.8-3-6.2-4.4-10.4-4.4 s-7.8,1.4-10.4,4.4C88,41.9,86.8,45.7,86.8,50.3z"></path>
+				 <path d="M193.5,79h-15.4v-7c-4.2,5.2-9.4,7.8-15.6,7.8s-11.4-1.8-15.6-5.2c-4.2-3.6-6.4-8.2-6.4-14s2.2-10.2,6.6-13.2 c4.4-3,10.4-4.4,18-4.4h12.2v-0.4c0-6.2-3.4-9.2-10-9.2c-2.8,0-5.8,0.6-9,1.6c-3.2,1.2-5.8,2.4-8,4.2l-7.4-10.4 c7.8-5.4,16.6-8.2,26.3-8.2c7.2,0,13,1.8,17.4,5.2c4.6,3.4,6.8,9,6.8,16.6V79H193.5z M177.2,57.1v-2.8H167c-6.6,0-9.8,2-9.8,6 c0,2,0.8,3.6,2.4,4.8c1.6,1.2,3.8,1.6,6.8,1.6s5.4-0.8,7.6-2.6C176,62.4,177.2,60,177.2,57.1z"></path>
+				 <path d="M225.9,47.1V79h-16.4V21.7h16.4v6.4c5-5,10.6-7.4,16.8-7.4s11.4,2.2,15.6,6.4c4.2,4.2,6.2,10,6.2,17v34.7H248 V46.7c0-8.8-3.4-13.2-10-13.2c-3.2,0-6.2,1.2-8.6,3.4C227,39.1,225.9,42.5,225.9,47.1z"></path>
+				 <path d="M330,79h-15.4v-7c-4.2,5.2-9.4,7.8-15.6,7.8s-11.4-1.8-15.6-5.2c-4.2-3.4-6.4-8.2-6.4-14s2.2-10.2,6.6-13.2 s10.4-4.4,18-4.4h12.2v-0.4c0-6.2-3.4-9.2-10-9.2c-2.8,0-5.8,0.6-9,1.6c-3.2,1.2-5.8,2.4-8,4.2l-7.4-10.4 c7.8-5.4,16.6-8.2,26.3-8.2c7.2,0,13,1.8,17.4,5.2c4.6,3.4,6.8,9,6.8,16.6V79H330z M313.6,57.1v-2.8h-10.3c-6.6,0-9.8,2-9.8,6 c0,2,0.8,3.6,2.4,4.8c1.6,1.2,3.8,1.6,6.8,1.6s5.4-0.8,7.6-2.6C312.4,62.4,313.6,60,313.6,57.1z"></path>
+				 <path d="M53.1,29.3c-5.8-5.8-13.4-8.6-22.1-8.6c-5.4,0-10.4,1-14.6,3.2V0H0v49.9l0,0c0,0.2,0,0.4,0,0.4 c0,8.4,3,15.4,8.8,20.9c5.8,5.6,13.4,8.6,22.1,8.6S47.3,77,53,71.2c5.8-5.6,8.8-12.6,8.8-20.9C61.9,41.9,59.1,35.1,53.1,29.3z M41.5,61.8c-2.8,3-6.2,4.4-10.4,4.4s-7.8-1.4-10.4-4.4c-2.8-3-4-6.8-4-11.4s1.4-8.6,4-11.6c2.8-3,6.2-4.4,10.4-4.4 s7.8,1.4,10.4,4.4c2.8,3,4,6.8,4,11.6C45.5,55.3,44.1,58.8,41.5,61.8z"></path>
+			 </g>
+	 </svg></span></h3>
+        
+         
+        <p style="margin-top: 30px; font-size: 13px; color:#878787;">Read the <a href="#" style="text-decoration: underline; color:#878787;">story</a> behind.</p>
+           
+           
+        <script>
+        
+        $(".toggle_button").click(function(){
+            
+            $(".toggle_button").removeClass("active");
+            
+            
+           if( $(this).attr("id") == "high"){
+              
+               $(".high").show();
+               $(".low").hide();
+               $(".medium").hide();
+               $("#high").addClass("active");
+               $("#popularity").html("MORE THAN 5%");
+               
+               
+              
+           }
+            if( $(this).attr("id") == "low"){
+                
+                
+                $(".high").hide();
+               $(".low").show();
+               $(".medium").hide();
+                 $("#low").addClass("active");
+                $("#popularity").html("UNDER 2%");
+                
+                
+               
+           }
+            if( $(this).attr("id") == "medium"){
+               
+               $(".high").hide();
+               $(".low").hide();
+               $(".medium").show();
+                 $("#medium").addClass("active");
+                $("#popularity").html("2 to 5%");
+                
+               
+           }
+            if( $(this).attr("id") == "all"){
+               
+               $(".high").show();
+                 $(".low").show();
+                 $(".medium").show();
+                 $("#all").addClass("active");
+               $("#popularity").html("");
+                
+           }
+            
+        })
+            
+            
+            
+            $(".tooltip").mouseenter(function(){
+                
+                if(window.innerWidth > 600){
+                
+               
+                   if($(this).width() <= 800){
+                       
+                       
+                 
+                       
+               $(this).children(".tooltiptext").show();
+                       
+                   
+                }else{
+                    
+                 
+                    
+                     $(this).children(".tooltiptext").css({right:"0",left:"0",width:"250px"});
+                    
+                      $(this).children(".tooltiptext").show();
+                    
+                }
+                    
+                }else{
+                    // $(this).children(".tooltiptext").css({position:"relative",textAlign:"left"});
+                      var tooltiptext =  $(this).children(".tooltiptext");
+                    var tt_row1 = tooltiptext.last().children(".tt_row1");
+                    
+                    tt_row1.css({borderRadius:"0px",textAlign:"left"});
+                  
+                       $("#tooltip_holder").html($(this).children(".tooltiptext").html());
+        
+                    
+                    
+                }
+                
+                
+                
+            })
+            
+            $(".tooltip").mouseleave(function(){
+                
+                
+                
+                $(".tooltiptext").hide();
+                 $("#tooltip_holder").html("");
+                
+                
+                
+            })
+            
+            
+            
+        
+       // console.log(window.innerWidth)
+       
+        </script>  
+
+        
+        
+        
+    
+    </body>
+
+
+</html>
